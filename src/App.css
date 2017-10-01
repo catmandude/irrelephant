@@ -209,3 +209,12 @@ input:checked + .slider:before {
 .other-modal-text {
   padding:5px;
 }
+
+.other-modal-text.large {
+  padding:5px;
+  font-size: xx-large;
+}
+
+.offset-top{
+  margin-top:10vh;
+}
