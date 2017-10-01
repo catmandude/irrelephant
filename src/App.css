@@ -34,3 +34,147 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin:auto;
+  padding-top: 5px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(138,152,161);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: rgb(81,117,135);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px rgb(81,117,135);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.switch-row, .dropdown {
+  width:50%;
+  text-align: left;
+  margin-left:auto;
+  margin-right:auto;
+  color: white;
+  font-size: 18px;
+}
+
+.edit-rules {
+  padding-top: 25px;
+}
+
+.header {
+  height: 100px;
+  background-color: rgba(138,152,161, 0.3);
+  border-bottom: solid 5px rgba(121,140,163, 0.3);
+  position: relative;
+}
+
+.alpaca {
+  content:url("alpaca.png");
+  height: 90px;
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+}
+
+.shield {
+  content:url("shield.png");
+  height: 70px;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.header-title {
+  color: white;
+  font-size: 45px;
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  top: 15px;
+  left: 150px;
+}
+
+.dropdown {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-default {
+  font-size: 18px;
+}
+
+.btn-info {
+  background-color: rgb(81,117,135);
+  background-image: linear-gradient(to bottom, rgb(81,117,140) 0%, rgb(81,117,135) 100%);
+  border-color: rgb(81,117,135);
+  width: 300px;
+  font-size: 30px;
+}
+
+.button-wrapper {
+  padding: 10px;
+}
+
+.welcome-message {
+  color: rbg(58,70,84);
+  font-size: 30px;
+  padding: 40px;
+}
+
+.header-button {
+  position: absolute;
+  bottom: 30px;
+  right: 150px;
+  font-size: 18px;
+}
+
+.login {
+  margin-top: 150px;
+}
