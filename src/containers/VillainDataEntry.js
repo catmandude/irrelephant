@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Button, DropdownButton, Col, Image, FormControl, FormGroup, Modal, MenuItem, Row, Well } from 'react-bootstrap'
 import curtis from '../curtis.jpg';
+import { ToastContainer, toast } from 'react-toastify';
 
 class VillainDataEntry extends Component {
   constructor(props) {
     super(props);
-    this.state = {login: true, choosingRegion: true, showModal: true}
+    this.state = {login: true, choosingRegion: true, showModal: true, deleteVillian: false}
     this.handleGet();
   }
   toggleClick = (event) => {
@@ -65,9 +66,20 @@ class VillainDataEntry extends Component {
   render() {
     return (
       <div>
+        <ToastContainer 
+          position="top-right"
+          type="default"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnHover
+        />
         <div className="header">
           <img alt="Application Logo" className="alpaca" />
           <span className="header-title">CODE: MAMMAL</span>
+          <Button bsStyle="primary" className='pull-right' style={{marginRight: '200px', marginTop:'30px', width: '200px'}}
+            onClick={() => this.setState({login: true, choosingRegion: true, showModal: true, deleteVillian: false, selectedRegion: null})}>Log out</Button>
           <img alt="Enterprise Logo" className="shield" />
         </div>
         {this.state.login ?
@@ -140,19 +152,23 @@ class VillainDataEntry extends Component {
                   </div>
                   {this.state.viewVillian ?
                     <div>
-                      <Row>
-                        <Col md={6}>
-                          <Image style={{width: '350px', marginTop:'15px', marginBottom: '15px'}} src={curtis} />
-                        </Col>
-                        <Col md={6} style={{marginTop: '100px'}} >
-                          <Well bsSize="small"><span style={{marginRight: '100px'}}>First Name:</span>Curtis</Well>
-                          <Well bsSize="small"><span style={{marginRight: '100px'}}>Last Name:</span>Meuth</Well>
-                          <Well bsSize="small"><span style={{marginRight: '100px'}}>Gender:</span>Female</Well>
-                          <Well bsSize="small"><span style={{marginRight: '100px'}}>Power Level:</span>-1</Well>
-                          <Well bsSize="small"><span style={{marginRight: '100px'}}>Alter Ego:</span>El Corgo</Well>
-                        </Col>
-                        { this.state.ruleSet[this.state.selectedRegion]['allowDataRemoval'] ? <Button bsStyle="danger">Delete</Button> : ''}
-                      </Row>
+                      {!this.state.deleteVillian ?
+                        <Row>
+                          <Col md={6}>
+                            <Image style={{width: '350px', marginTop:'15px', marginBottom: '15px'}} src={curtis} />
+                          </Col>
+                          <Col md={6} style={{marginTop: '100px'}} >
+                            <Well bsSize="small"><span style={{marginRight: '100px'}}>First Name:</span>Curtis</Well>
+                            <Well bsSize="small"><span style={{marginRight: '100px'}}>Last Name:</span>Meuth</Well>
+                            <Well bsSize="small"><span style={{marginRight: '100px'}}>Gender:</span>Female</Well>
+                            <Well bsSize="small"><span style={{marginRight: '100px'}}>Power Level:</span>-1</Well>
+                            <Well bsSize="small"><span style={{marginRight: '100px'}}>Alter Ego:</span>El Corgo</Well>
+                          </Col>
+                          { this.state.ruleSet[this.state.selectedRegion]['allowDataRemoval'] ? <Button bsStyle="danger" onClick={() => {
+                            toast('Villian has been deleted!')
+                            this.setState({deleteVillian: true})}}>Delete</Button>
+                            : ''}
+                        </Row> : ''}
                     </div>
                     : ''}
                   {!this.state.viewVillian ?
