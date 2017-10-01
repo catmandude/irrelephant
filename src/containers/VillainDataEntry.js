@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, DropdownButton, Col, FormControl, ControlLabel, FieldGroup, FormGroup, MenuItem, Row, Well } from 'react-bootstrap'
+import { Button, DropdownButton, Col, FormControl, ControlLabel, FieldGroup, FormGroup, Modal, MenuItem, Row, Well } from 'react-bootstrap'
 
 class VillainDataEntry extends Component {
   constructor(props) {
@@ -44,7 +44,6 @@ class VillainDataEntry extends Component {
   };
 
   handleRegionAndModal = (region) => {
-    this.open();
     this.setState({
       selectedRegion: region,
       choosingRegion: false
@@ -108,11 +107,27 @@ class VillainDataEntry extends Component {
                 <DropdownButton title={this.state.selectedRegion ? this.state.selectedRegion : 'Select a Region'} id="bg-nested-dropdown">
                   {
                     this.state.regions.map((region) => {
-                      return <MenuItem onClick={
-                        this.handleRegionAndModal(region)} key={region} >{region}</MenuItem>
+                      return <MenuItem onClick={ () =>
+                        this.setState({
+                          selectedRegion: region,
+                          choosingRegion: false
+                        })
+                      } key={region} >{region}</MenuItem>
                     })
                   }
                 </DropdownButton>
+                  <Modal show={this.state.showModal} onHide={this.close}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Modal heading</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <h4>Text in a modal</h4>
+                      <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button onClick={this.close}>Close</Button>
+                    </Modal.Footer>
+                  </Modal>
                 </Col>
               </Row> :
             <Row>
