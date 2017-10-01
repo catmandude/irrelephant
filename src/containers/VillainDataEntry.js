@@ -18,12 +18,12 @@ class VillainDataEntry extends Component {
     });
   }
 
-  close() {
-    this.setState({ showModal: false });
+  closePrivacy = () => {
+    this.setState({ showPrivacyModal: false });
   }
 
-  open() {
-    this.setState({ showModal: true });
+  openPrivacy = () => {
+    this.setState({ showPrivacyModal: true });
   }
 
   handleGet = () => {
@@ -57,7 +57,7 @@ class VillainDataEntry extends Component {
 
   viewTheVillian = () => {
     this.setState({viewVillian: true})
-    this.setState({showModal: true})
+    this.setState({showPrivacyModal: true})
   }
 
   componentWillReceiveProps(next) {
@@ -82,6 +82,12 @@ class VillainDataEntry extends Component {
             onClick={() => this.setState({login: true, choosingRegion: true, showModal: true, deleteVillian: false, selectedRegion: null})}>Log out</Button>
           <img alt="Enterprise Logo" className="shield" />
         </div>
+        { this.state.showPrivacyModal ?
+          <div className="other-modal">
+            <div className="other-modal-text">Privacy Policy: Tumblr single-origin coffee portland irure, freegan typewriter cray echo park. Pok pok flexitarian messenger bag, thundercats YOLO hammock vexillologist deserunt +1 tattooed ut helvetica green juice. Pickled offal glossier fingerstache. Nulla yr keytar, wolf truffaut next level chambray tbh. Yr iceland ex, narwhal adaptogen YOLO succulents ad biodiesel. Coloring book nostrud minim green juice offal authentic live-edge. Normcore jean shorts drinking vinegar, magna ipsum put a bird on it heirloom cray asymmetrical occaecat aesthetic disrupt. Lyft quis gluten-free synth dolore messenger bag pickled copper mug DIY. Wayfarers listicle artisan, quis chillwave non kickstarter cold-pressed butcher. Hot chicken polaroid copper mug consectetur. Bespoke microdosing ea, ut chia unicorn laborum drinking vinegar narwhal.</div>
+            <Button onClick={this.closePrivacy} className="other-modal-button">Close</Button>
+          </div> : ''
+        }
         {this.state.login ?
           <form className="login">
             <Col md={4} />
@@ -128,20 +134,6 @@ class VillainDataEntry extends Component {
                       })
                     }
                   </DropdownButton>
-                  <Modal title='Modal title' onRequestHide={this.hideListItem}>
-                    <p>I am a modal!</p>
-                  </Modal>{/*<Modal show={this.state.showModal} onHide={this.close}>
-                 <Modal.Header closeButton>
-                 <Modal.Title>Modal heading</Modal.Title>
-                 </Modal.Header>
-                 <Modal.Body>
-                 <h4>Text in a modal</h4>
-                 <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-                 </Modal.Body>
-                 <Modal.Footer>
-                 <Button onClick={this.close}>Close</Button>
-                 </Modal.Footer>
-                 </Modal>*/}
                 </Col>
               </Row> :
               <Row>
@@ -178,7 +170,7 @@ class VillainDataEntry extends Component {
                     :
                     '' }
                   <Row>
-                    {this.state.ruleSet[this.state.selectedRegion]['regionalPrivacy'] ? <Button style={{marginBottom: '5px'}}>Privacy Policy</Button> : ''}
+                    {this.state.ruleSet[this.state.selectedRegion]['regionalPrivacy'] ? <Button style={{marginBottom: '5px'}} onClick={this.openPrivacy}>Privacy Policy</Button> : ''}
                   </Row>
                   <Row>
                     {this.state.ruleSet[this.state.selectedRegion]['allowComplaints'] ? <Button style={{marginBottom: '5px'}}>Complaint Department</Button> : ''}

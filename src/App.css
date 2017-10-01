@@ -184,3 +184,28 @@ input:checked + .slider:before {
 .login {
   margin-top: 150px;
 }
+
+.other-modal {
+  height: 50vh;
+  width: 40vw;
+  background-color: white;
+  position: absolute;
+  z-index: 1000000;
+  top: 10vh;
+  left: 30vw;
+  border-radius: 5px;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.other-modal-button {
+  position: absolute;
+  bottom: 20px;
+  width:10vw;
+  left: 15vw;
+}
+
+.other-modal-text {
+  padding:5px;
+}
