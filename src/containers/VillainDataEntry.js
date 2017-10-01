@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button, DropdownButton, Col, FormControl, FormGroup, Modal, MenuItem, Row, Well } from 'react-bootstrap'
-//FieldGroup, ControlLabel
+import { Button, DropdownButton, Col, Image, FormControl, FormGroup, Modal, MenuItem, Row, Well } from 'react-bootstrap'
+import curtis from '../curtis.jpg';
 
 class VillainDataEntry extends Component {
   constructor(props) {
@@ -133,19 +133,24 @@ class VillainDataEntry extends Component {
                 </Col>
               </Row> :
               <Row>
-                <Col md={4} />
-                <Col md={4}>
+                <Col md={2} />
+                <Col md={8}>
                   <div className="button-wrapper">
                     <Button bsStyle="info" onClick={this.viewTheVillian}>View Villian</Button>
                   </div>
                   {this.state.viewVillian ?
                     <div>
                       <Row>
-                        <Well bsSize="small"><span style={{marginRight: '100px'}}>First Name:</span>Curtis</Well>
-                        <Well bsSize="small"><span style={{marginRight: '100px'}}>Last Name:</span>Meuth</Well>
-                        <Well bsSize="small"><span style={{marginRight: '100px'}}>Gender:</span>Female</Well>
-                        <Well bsSize="small"><span style={{marginRight: '100px'}}>Power Level:</span>-1</Well>
-                        <Well bsSize="small"><span style={{marginRight: '100px'}}>Alter Ego:</span>El Corgo</Well>
+                        <Col md={6}>
+                          <Image style={{width: '350px', marginTop:'15px', marginBottom: '15px'}} src={curtis} />
+                        </Col>
+                        <Col md={6} style={{marginTop: '100px'}} >
+                          <Well bsSize="small"><span style={{marginRight: '100px'}}>First Name:</span>Curtis</Well>
+                          <Well bsSize="small"><span style={{marginRight: '100px'}}>Last Name:</span>Meuth</Well>
+                          <Well bsSize="small"><span style={{marginRight: '100px'}}>Gender:</span>Female</Well>
+                          <Well bsSize="small"><span style={{marginRight: '100px'}}>Power Level:</span>-1</Well>
+                          <Well bsSize="small"><span style={{marginRight: '100px'}}>Alter Ego:</span>El Corgo</Well>
+                        </Col>
                         { this.state.ruleSet[this.state.selectedRegion]['allowDataRemoval'] ? <Button bsStyle="danger">Delete</Button> : ''}
                       </Row>
                     </div>
